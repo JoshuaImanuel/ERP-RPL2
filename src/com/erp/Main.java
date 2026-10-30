@@ -12,7 +12,7 @@ public class Main{
         Scanner input = new Scanner(System.in);
         int pilihan = 0;
         
-        while (pilihan !=3){
+        while (pilihan !=5){
         System.out.println("=== Sistem ERP-MASTER DATA BARANG ===");
         System.out.println("1. Tambah Barang");
         System.out.println("2. Lihat Daftar Barang");
