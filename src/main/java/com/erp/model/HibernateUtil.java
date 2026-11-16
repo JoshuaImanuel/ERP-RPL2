@@ -1,4 +1,4 @@
-package com.erp.util;
+package com.erp.model;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
