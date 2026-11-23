@@ -1,58 +1,95 @@
 package com.erp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "barang")
 public class Barang {
 
     @Id
-    @Column(name = "kode_barang")
-    private String kodeBarang;
+    @Column(name = "kode", length = 30)
+    private String kode;
 
-    @Column(name = "nama_barang")
-    private String namaBarang;
+    @Column(name = "nama", length = 100)
+    private String nama;
+
+    @Column(name = "kategori", length = 50)
+    private String kategori;
+
+    @Column(name = "harga")
+    private Double harga;
 
     @Column(name = "stok")
-    private int stok;
+    private Integer stok;
 
     public Barang() {
     }
 
-    public Barang(String kodeBarang, String namaBarang, int stok) {
-        this.kodeBarang = kodeBarang;
-        this.namaBarang = namaBarang;
+    public Barang(String kode, String nama, Integer stok) {
+        this.kode = kode;
+        this.nama = nama;
+        this.kategori = "Umum";
+        this.harga = 0.0;
         this.stok = stok;
     }
 
-    public String getKodeBarang() {
-        return kodeBarang;
+    public Barang(String kode, String nama, String kategori, Double harga, Integer stok) {
+        this.kode = kode;
+        this.nama = nama;
+        this.kategori = kategori;
+        this.harga = harga;
+        this.stok = stok;
     }
 
-    public void setKodeBarang(String kodeBarang) {
-        this.kodeBarang = kodeBarang;
+    public String getKode() {
+        return kode;
     }
 
-    public String getNamaBarang() {
-        return namaBarang;
+    public void setKode(String kode) {
+        this.kode = kode;
     }
 
-    public void setNamaBarang(String namaBarang) {
-        this.namaBarang = namaBarang;
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getKategori() {
+        return kategori != null ? kategori : "Umum";
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+
+    public double getHarga() {
+        return harga != null ? harga : 0.0;
+    }
+
+    public void setHarga(Double harga) {
+        this.harga = harga;
     }
 
     public int getStok() {
-        return stok;
+        return stok != null ? stok : 0;
     }
 
-    public void setStok(int stok) {
+    public void setStok(Integer stok) {
         this.stok = stok;
     }
 
     public void tampilkanInfo() {
-        System.out.println("Kode: " + kodeBarang + " | Nama: " + namaBarang + " | Stok: " + stok);
+        System.out.println("Kode: " + kode + " | Nama: " + nama + " | Kategori: " + getKategori() + " | Harga: " + getHarga() + " | Stok: " + getStok());
+    }
+
+    @Override
+    public String toString() {
+        return kode + " - " + nama + " (Stok: " + getStok() + ")";
     }
 }

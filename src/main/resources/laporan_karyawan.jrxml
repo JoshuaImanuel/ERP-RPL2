@@ -3,13 +3,60 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<query language="sql"><![CDATA[]]></query>
 	<background splitType="Stretch"/>
-	<title height="79" splitType="Stretch"/>
-	<pageHeader height="35" splitType="Stretch"/>
-	<columnHeader height="61" splitType="Stretch"/>
+	<title height="82" splitType="Stretch">
+		<element kind="staticText" uuid="abe761c9-c544-4f70-a735-85e60523a101" x="0" y="0" width="555" height="25" fontName="SansSerif" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[LAPORAN DATA KARYAWAN]]></text>
+		</element>
+		<element kind="staticText" uuid="ec639646-f89b-4ac6-982e-e7788cf5054b" x="0" y="25" width="555" height="20" fontName="SansSerif" fontSize="10.0" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[DAFTAR NAMA KARYAWAN]]></text>
+		</element>
+	</title>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="68" splitType="Stretch">
+			<element kind="staticText" uuid="dcdac6fe-0917-4d5d-ab78-3b15b76b5dd6" x="170" y="0" width="190" height="26" backcolor="#E6E6E6" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[NAMA]]></text>
+			</element>
+			<element kind="staticText" uuid="8f9776fd-7d49-4ac2-a6e1-92227311484d" x="95" y="0" width="75" height="26" backcolor="#E6E6E6" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[KODE]]></text>
+			</element>
+			<element kind="staticText" uuid="c9f488a8-5379-4679-9089-9b6a7d70a422" x="360" y="0" width="110" height="26" backcolor="#E6E6E6" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[JABATAN]]></text>
+			</element>
+			<element kind="textField" uuid="e49512e7-db80-46b1-95af-82052007bfa0" x="170" y="26" width="190" height="22" vTextAlign="Middle">
+				<box leftPadding="5">
+					<pen lineWidth="1.0"/>
+				</box>
+				<expression><![CDATA[$F{nama}]]></expression>
+			</element>
+			<element kind="textField" uuid="dcec3a08-0b0f-46ab-8c13-c9f25351dbb7" x="95" y="26" width="75" height="22" hTextAlign="Center" vTextAlign="Middle">
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<expression><![CDATA[$F{kode}]]></expression>
+			</element>
+			<element kind="textField" uuid="21326d97-03dc-4379-9a7f-e54cb89d67f4" x="360" y="26" width="110" height="22" vTextAlign="Middle">
+				<box leftPadding="5">
+					<pen lineWidth="1.0"/>
+				</box>
+				<expression><![CDATA[$F{Jabatan}]]></expression>
+			</element>
+		</band>
 	</detail>
-	<columnFooter height="45" splitType="Stretch"/>
-	<pageFooter height="54" splitType="Stretch"/>
-	<summary height="42" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch">
+		<element kind="textField" uuid="40a5487d-0488-4164-bd3e-3004435d7f20" x="0" y="34" width="150" height="20" pattern="dd/MM/yyyy" vTextAlign="Middle">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="textField" uuid="1b0c608c-0d1d-4443-afd9-71ecf30842c9" x="455" y="34" width="100" height="20" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
 </jasperReport>

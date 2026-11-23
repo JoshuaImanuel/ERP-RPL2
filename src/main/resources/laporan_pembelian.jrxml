@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport name="laporan_pembelian" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    <parameter name="tgl_awal" class="java.sql.Date"/>
+    <parameter name="tgl_akhir" class="java.sql.Date"/>
+    <query language="sql"><![CDATA[SELECT no_faktur_beli, tanggal, pemasok, nama_barang, jumlah, harga_beli, total_nilai FROM pembelian WHERE tanggal BETWEEN $P{tgl_awal} AND $P{tgl_akhir} ORDER BY tanggal DESC, no_faktur_beli DESC]]></query>
+    <field name="no_faktur_beli" class="java.lang.String"/>
+    <field name="tanggal" class="java.sql.Date"/>
+    <field name="pemasok" class="java.lang.String"/>
+    <field name="nama_barang" class="java.lang.String"/>
+    <field name="jumlah" class="java.lang.Integer"/>
+    <field name="harga_beli" class="java.lang.Double"/>
+    <field name="total_nilai" class="java.lang.Double"/>
+    <variable name="total_pembelian" calculation="Sum" class="java.lang.Double">
+        <expression><![CDATA[$F{total_nilai}]]></expression>
+    </variable>
+    <title height="60">
+        <element kind="staticText" x="0" y="5" width="555" height="25" fontName="SansSerif" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[LAPORAN TRANSAKSI PEMBELIAN]]></text>
+        </element>
+        <element kind="textField" x="0" y="30" width="555" height="20" fontName="SansSerif" fontSize="10.0" hTextAlign="Center" vTextAlign="Middle">
+            <expression><![CDATA["Periode: " + new java.text.SimpleDateFormat("dd/MM/yyyy").format($P{tgl_awal}) + " s/d " + new java.text.SimpleDateFormat("dd/MM/yyyy").format($P{tgl_akhir})]]></expression>
+        </element>
+    </title>
+    <columnHeader height="26">
+        <element kind="staticText" mode="Opaque" x="0" y="0" width="90" height="26" backcolor="#E6E6E6" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[NO FAKTUR]]></text>
+            <box><pen lineWidth="1.0"/></box>
+        </element>
+        <element kind="staticText" mode="Opaque" x="90" y="0" width="60" height="26" backcolor="#E6E6E6" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[TANGGAL]]></text>
+            <box><pen lineWidth="1.0"/></box>
+        </element>
+        <element kind="staticText" mode="Opaque" x="150" y="0" width="100" height="26" backcolor="#E6E6E6" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[PEMASOK]]></text>
+            <box><pen lineWidth="1.0"/></box>
+        </element>
+        <element kind="staticText" mode="Opaque" x="250" y="0" width="120" height="26" backcolor="#E6E6E6" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[NAMA BARANG]]></text>
+            <box><pen lineWidth="1.0"/></box>
+        </element>
+        <element kind="staticText" mode="Opaque" x="370" y="0" width="35" height="26" backcolor="#E6E6E6" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[QTY]]></text>
+            <box><pen lineWidth="1.0"/></box>
+        </element>
+        <element kind="staticText" mode="Opaque" x="405" y="0" width="70" height="26" backcolor="#E6E6E6" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[HARGA BELI]]></text>
+            <box><pen lineWidth="1.0"/></box>
+        </element>
+        <element kind="staticText" mode="Opaque" x="475" y="0" width="80" height="26" backcolor="#E6E6E6" bold="true" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[TOTAL]]></text>
+            <box><pen lineWidth="1.0"/></box>
+        </element>
+    </columnHeader>
+    <detail>
+        <band height="22">
+            <element kind="textField" x="0" y="0" width="90" height="22" fontSize="9.0" hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA[$F{no_faktur_beli}]]></expression>
+                <box><pen lineWidth="1.0"/></box>
+            </element>
+            <element kind="textField" x="90" y="0" width="60" height="22" fontSize="9.0" pattern="dd/MM/yyyy" hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA[$F{tanggal}]]></expression>
+                <box><pen lineWidth="1.0"/></box>
+            </element>
+            <element kind="textField" x="150" y="0" width="100" height="22" fontSize="9.0" vTextAlign="Middle">
+                <expression><![CDATA[$F{pemasok}]]></expression>
+                <box leftPadding="4"><pen lineWidth="1.0"/></box>
+            </element>
+            <element kind="textField" x="250" y="0" width="120" height="22" fontSize="9.0" vTextAlign="Middle">
+                <expression><![CDATA[$F{nama_barang}]]></expression>
+                <box leftPadding="4"><pen lineWidth="1.0"/></box>
+            </element>
+            <element kind="textField" x="370" y="0" width="35" height="22" fontSize="9.0" hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA[$F{jumlah}]]></expression>
+                <box><pen lineWidth="1.0"/></box>
+            </element>
+            <element kind="textField" x="405" y="0" width="70" height="22" fontSize="9.0" pattern="#,##0" hTextAlign="Right" vTextAlign="Middle">
+                <expression><![CDATA[$F{harga_beli}]]></expression>
+                <box rightPadding="4"><pen lineWidth="1.0"/></box>
+            </element>
+            <element kind="textField" x="475" y="0" width="80" height="22" fontSize="9.0" pattern="#,##0" hTextAlign="Right" vTextAlign="Middle">
+                <expression><![CDATA[$F{total_nilai}]]></expression>
+                <box rightPadding="4"><pen lineWidth="1.0"/></box>
+            </element>
+        </band>
+    </detail>
+    <pageFooter height="22">
+        <element kind="textField" x="0" y="2" width="150" height="20" pattern="dd/MM/yyyy" vTextAlign="Middle">
+            <expression><![CDATA[new java.util.Date()]]></expression>
+        </element>
+        <element kind="textField" x="455" y="2" width="100" height="20" hTextAlign="Right" vTextAlign="Middle">
+            <expression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></expression>
+        </element>
+    </pageFooter>
+    <summary height="28">
+        <element kind="staticText" mode="Opaque" x="0" y="0" width="475" height="26" backcolor="#F2F2F2" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[TOTAL PEMBELIAN (RP)]]></text>
+            <box rightPadding="5"><pen lineWidth="1.0"/></box>
+        </element>
+        <element kind="textField" mode="Opaque" x="475" y="0" width="80" height="26" backcolor="#F2F2F2" fontSize="9.0" bold="true" pattern="#,##0" hTextAlign="Right" vTextAlign="Middle">
+            <expression><![CDATA[$V{total_pembelian} != null ? $V{total_pembelian} : 0.0]]></expression>
+            <box rightPadding="4"><pen lineWidth="1.0"/></box>
+        </element>
+    </summary>
+</jasperReport>
