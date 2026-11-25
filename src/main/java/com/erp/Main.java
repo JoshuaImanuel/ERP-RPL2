@@ -245,7 +245,7 @@ public class Main extends JFrame {
     }
 
     // ==================== 4. PANEL PELAPORAN TERPUSAT ====================
-    private JPanel panelLaporan() {
+   private JPanel panelLaporan() {
         JPanel panel = new JPanel(new BorderLayout(8, 8));
 
         JPanel filter = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -256,24 +256,31 @@ public class Main extends JFrame {
         filter.add(txtTglAkhir);
 
         JButton btnTampil = new JButton("Tampilkan Ringkasan");
+        btnTampil.addActionListener(e -> tampilkanRingkasan());
+        filter.add(btnTampil);
+
+        JPanel panelCetak = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelCetak.setBorder(BorderFactory.createTitledBorder("Cetak Laporan (JasperReports)"));
         JButton btnCetakBarang = new JButton("Cetak Stok Barang");
         JButton btnCetakBeli = new JButton("Cetak Pembelian");
         JButton btnCetakJual = new JButton("Cetak Penjualan");
 
-        btnTampil.addActionListener(e -> tampilkanRingkasan());
         btnCetakBarang.addActionListener(e -> cetakJasper("src/main/resources/laporan_barang.jrxml", false));
         btnCetakBeli.addActionListener(e -> cetakJasper("src/main/resources/laporan_pembelian.jrxml", true));
         btnCetakJual.addActionListener(e -> cetakJasper("src/main/resources/laporan_penjualan.jrxml", true));
 
-        filter.add(btnTampil);
-        filter.add(btnCetakBarang);
-        filter.add(btnCetakBeli);
-        filter.add(btnCetakJual);
+        panelCetak.add(btnCetakBarang);
+        panelCetak.add(btnCetakBeli);
+        panelCetak.add(btnCetakJual);
+
+        JPanel panelUtara = new JPanel(new BorderLayout());
+        panelUtara.add(filter, BorderLayout.NORTH);
+        panelUtara.add(panelCetak, BorderLayout.SOUTH);
 
         areaLaporan.setEditable(false);
         areaLaporan.setFont(new Font("Consolas", Font.PLAIN, 13));
 
-        panel.add(filter, BorderLayout.NORTH);
+        panel.add(panelUtara, BorderLayout.NORTH);
         panel.add(new JScrollPane(areaLaporan), BorderLayout.CENTER);
         return panel;
     }
